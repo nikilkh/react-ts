@@ -74,9 +74,9 @@ const state = location.state as stateType;
 
   useEffect(() => {
     if (localStorage.getItem(state.movie.id.toString()) !== null || undefined) {
-      setSelectedSeats(
-        localStorage.getItem(state.movie.id.toString()).split(",")
-      );
+      // setSelectedSeats(
+      //   localStorage.getItem(state.movie.id.toString()).split(",")
+      // );
       setConfirmedSeats(
         localStorage.getItem(state.movie.id.toString())?.split(",")
       );
