@@ -1,149 +1,173 @@
 import styled from "styled-components";
-
+type props = {
+  bookingHomeVisible: boolean;
+};
 export const BookingPageStyle = styled.div`
-  /* @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&family=Rubik:wght@500;600&display=swap'); */
-
-  display: flex;
-position: relative;
+  width: fit-content;
   margin: auto;
-  width: max-content;
+  background: ${(props: props) =>
+    props.bookingHomeVisible ? "white" : "rgba(229, 229, 229, 0.6)"};
+  pointer-events: ${(props) => (props.bookingHomeVisible ? "all" : "none")};
+`;
+
+export const BookingPageFlex = styled.div`
+  display: flex;
+  position: relative;
+  margin: auto;
+  width: 1440px;
+  height: 1024px;
   flex-direction: column;
-
-  button {
-    margin: auto;
-    margin-top: 100px;
-    width: 190px;
-    height: 43px;
-    background-color: #352c9a;
-    font-family: "Rubik", sans-serif;
-    font-size: 16px;
-    font-weight: 600;
-    color: white;
-    cursor: pointer;
-
-    &:active {
-      text-decoration: underline;
-    }
-
-    &:disabled {
-      background: #626262;
-    }
-
-    &:hover {
-      background: #724fd8;
-      transform: scale(0.95);
-    }
-  }
 `;
 
 export const ScreenStyle = styled.div`
-  margin: auto;
+  margin-left: 171px;
   margin-top: 46px;
 `;
 export const SeatNumberStyle = styled.div`
   margin-top: 75px;
   display: flex;
-  justify-content: space-evenly;
-  margin-left: 50px;
-  column-gap: 30px;
+  justify-content: space-between;
+  margin-left: 294px;
+  margin-right: 204px;
 `;
 
 export const SeatStyle = styled.div`
-  height: 80px;
-  width: 100px;
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 
 export const AllSeatsStyle = styled.div`
-  margin: auto;
-  margin-top: 32px;
+  margin-top: 44px;
+  margin-left: 170px;
+  margin-right: 187px;
 `;
-
+export const LetterSeatStyle = styled.div`
+  margin-right: 66px;
+`;
 export const RowSeatStyle = styled.div`
   display: flex;
-  margin: auto;
-  column-gap: 30px;
 `;
 
-export const SittingSeatStyle = styled.div``;
-
 export const ConfirmModalStyle = styled.div`
-width: 640px;
-height: 578px;
-position: absolute;
-top: 179px;
-left: 600px;
-background-color: #ffffff;
-border-radius: 20px;
-font-family: "Rubik", sans-serif;
-
-h1 {
-  text-align: center;
+  width: 640px;
+  height: 578px;
+  position: absolute;
+  margin: auto;
+  top: 179px;
+  left: 600px;
+  background-color: #ffffff;
+  border-radius: 20px;
   font-family: "Rubik", sans-serif;
- font-size: 40px;
-}
+`;
 
-h5 {
-  text-align: center;
-  font-family: "Rubik", sans-serif;
-  font-size: 18px;
-}
-`
+export const ModalFlexMainStyle = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin: auto 52px;
+`;
 
 export const ModalCloseStyle = styled.div`
-display: flex;
-justify-content: end;
+  display: flex;
+  justify-content: end;
+`;
 
-button {
-  all: unset;
-  font-size: x-large;
-  cursor: pointer;
-  margin-top: 5px;
-  margin-right: 5px;
-}
-`
+export const ModalHeadingStyle = styled.header`
+  text-align: center;
+  margin: auto;
+
+  h1 {
+    font-family: "Rubik", sans-serif;
+    font-size: 40px;
+    margin: 0px 0px 39px 0px;
+  }
+
+  h5 {
+    font-family: "Rubik", sans-serif;
+    font-size: 18px;
+    margin: 0px 0px 48px 0px;
+  }
+`;
+
+export const ImageAndPrice = styled.div`
+  display: flex;
+`;
 
 export const ModalImageStyle = styled.div`
-height: 326.35px;
-width: 200px;
-border-radius: 20px;
-margin-left: 52px;
-margin-right: 134px;
+  margin-right: 134px;
 
-img {
-  height: 100%;
-  width: auto;
-  border-radius: 10px;
-}
-`
+  img {
+    height: 326.35px;
+    width: 200px;
+    border-radius: 20px;
+    box-shadow: 0px 10px 20px 5px rgba(0, 0, 0, 0.25);
+  }
+`;
 export const PriceDetailsStyle = styled.div`
-margin-right: 52px;
-margin-bottom: 50px;
-display: flex;
-flex-direction: column;
+  width: 100%;
+  margin: auto;
 
-h1, h2 {
-  display: inline;
-}
+  div:nth-child(2) {
+    word-break: break-all;
+    h1 {
+      margin: auto;
+    }
+    h2 {
+      margin: auto;
+    }
+  }
+  div:nth-child(3) {
+    display: flex;
+    justify-content: space-between;
+  }
+  div:nth-child(4) {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+  }
+  div:nth-child(5) {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
 
-div:nth-child(3) {
-  display: flex;
-  justify-content: space-between;
-}
-div:nth-child(4) {
-  display: flex;
-  justify-content: space-between;
-}
-div:nth-child(5) {
-  display: flex;
-  justify-content: space-between;
-  border-bottom: 2px solid black;
+    border-bottom: 2px solid black;
+  }
+  div:nth-child(6) {
+    display: flex;
+    justify-content: space-between;
+  }
+`;
 
-}
-div:nth-child(6) {
-  display: flex;
-  justify-content: space-between;
-}
-`
+export const ConfirmBookingButtonStyle = styled.button`
+  margin: auto;
+  margin-top: 109px;
+  width: 190px;
+  height: 43px;
+  background-color: #352c9a;
+  font-family: "Rubik", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+  cursor: pointer;
+
+  &:active {
+    text-decoration: underline;
+  }
+
+  &:disabled {
+    background: #626262;
+  }
+
+  &:hover {
+    background: #724fd8;
+    transform: scale(0.95);
+  }
+`;
+
+export const CloseButtonStyle = styled.button`
+  all: unset;
+  font-size: large;
+  cursor: pointer;
+  margin-top: 5px;
+  margin-right: 10px;
+`;

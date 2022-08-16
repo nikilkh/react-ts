@@ -5,16 +5,19 @@ import whiteSeat from "../SVGs/whiteSeat.svg";
 import greySeat from "../SVGs/greySeat.svg";
 import blueSeat from "../SVGs/blueSeat.svg";
 
-import ConfirmBooking from "./ConfirmBooking";
+import { ConfirmBooking } from "./ConfirmBooking";
 import {
   AllSeatsStyle,
+  BookingPageFlex,
   BookingPageStyle,
+  ConfirmBookingButtonStyle,
+  LetterSeatStyle,
   RowSeatStyle,
   ScreenStyle,
   SeatNumberStyle,
   SeatStyle,
-  SittingSeatStyle,
 } from "./BookingPage.style";
+import { GlobalStyle } from "../../styles/Global.styled";
 type movie = {
   id: number;
 };
@@ -23,40 +26,24 @@ interface stateType {
 }
 
 type BookingProps = {
-  children: React.ReactNode
-}
+  children: React.ReactNode;
+};
 
 export default function BookingPage(props: BookingProps) {
-
   const [selectedSeats, setSelectedSeats] = useState<string[]>([]);
-  let [confirmedSeats, setConfirmedSeats] = useState<
-    string[] | undefined | null
-  >([]);
+  const [confirmedSeats, setConfirmedSeats] = useState<string[]>([]);
   const [modalVisible, setModalVisible] = useState<boolean>(false);
   const [bookingHomeVisible, setBookingHomeVisible] = useState<boolean>(true);
   const data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-  const seats = [
-    {
-      row: "A",
-      seat: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-    },
-    {
-      row: "B",
-      seat: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-    },
-    {
-      row: "C",
-      seat: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-    },
-    {
-      row: "D",
-      seat: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-    },
-  ];
+  const seats = {
+    row: ["A", "B", "C", "D"],
+    data: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+  };
+
   let location = useLocation();
   const state = location.state as stateType;
-  
+
   function handleSeatClick(id: string) {
     if (selectedSeats?.includes(id)) {
       let newSelectedSeats = selectedSeats.filter((seat: string) => {
@@ -65,101 +52,112 @@ export default function BookingPage(props: BookingProps) {
       setSelectedSeats(newSelectedSeats);
     } else if (selectedSeats.length < 10) {
       setSelectedSeats(() => [...selectedSeats, id]);
-    } else alert("you can not select more than 10 seats");
+    }
   }
 
   function confirmBooking() {
-    localStorage.setItem(state.movie.id.toString(), selectedSeats.toString());
-
-    setConfirmedSeats(
-      localStorage.getItem(state.movie.id.toString())?.split(",")
+    setConfirmedSeats((prevSeats) => [...prevSeats, ...selectedSeats]);
+    localStorage.setItem(
+      state.movie.id.toString(),
+      [...confirmedSeats, ...selectedSeats].join(",")
     );
-    setModalVisible(true);
-    setBookingHomeVisible(false);
+    if (selectedSeats.length > 0) {
+      setModalVisible(true);
+      setBookingHomeVisible(false);
+    } else {
+      alert("select minimum 1 seat");
+    }
   }
 
   function closeModal() {
     setModalVisible(false);
     setBookingHomeVisible(true);
+    setSelectedSeats([]);
   }
 
   useEffect(() => {
-    if (localStorage.getItem(state.movie.id.toString()) !== null || undefined) {
-      
+    if (localStorage.getItem(state.movie.id.toString())) {
       setConfirmedSeats(
-        localStorage.getItem(state.movie.id.toString())?.split(",")
+        localStorage.getItem(state.movie.id.toString())?.split(",") as string[]
       );
     }
   }, []);
 
   return (
     <>
-      `
-      <BookingPageStyle
-        style={
-          bookingHomeVisible
-            ? { background: "white" }
-            : { background: "rgba(229, 229, 229, 0.6)", pointerEvents: "none" }
-        }
-      >
-        <ScreenStyle>
-          <img src={screen}></img>
-        </ScreenStyle>
+      <GlobalStyle />
+      <BookingPageStyle bookingHomeVisible={bookingHomeVisible}>
+        <BookingPageFlex>
+          <ScreenStyle>
+            <img src={screen} alt="screen this side"></img>
+          </ScreenStyle>
 
-        <div style={{ margin: "auto" }}>
-          <SeatNumberStyle>
-            {data.map((num) => {
+          <div style={{ margin: "auto" }}>
+            <SeatNumberStyle>
+              {data.map((num) => {
+                return (
+                  <SeatStyle>
+                    <h1>{num}</h1>
+                  </SeatStyle>
+                );
+              })}
+            </SeatNumberStyle>
+          </div>
+
+          <AllSeatsStyle>
+            {seats.row.map((item) => {
               return (
-                <SeatStyle>
-                  <h1>{num}</h1>
-                </SeatStyle>
-              );
-            })}
-          </SeatNumberStyle>
-        </div>
+                <RowSeatStyle>
+                  <LetterSeatStyle>
+                    <h1>{item}</h1>
+                  </LetterSeatStyle>
 
-        <AllSeatsStyle>
-          {seats.map((item) => {
-            return (
-              <RowSeatStyle>
-                <div>
-                  <h1>{item.row}</h1>
-                </div>
-                {item.seat.map((seatNumber) => {
-                  return (
-                    <>
-                      <SittingSeatStyle
-                        onClick={() => {
-                          handleSeatClick(item.row + seatNumber);
-                        }}
-                      >
-                        {confirmedSeats?.includes(item.row + seatNumber) ? (
-                          <img key={item.row + seatNumber} src={greySeat}></img>
-                        ) : selectedSeats.includes(item.row + seatNumber) ? (
-                          <img key={item.row + seatNumber} src={blueSeat}></img>
+                  {seats.data.map((seatNumber) => {
+                    return (
+                      <>
+                        {confirmedSeats?.includes(item + seatNumber) ? (
+                          <img
+                            key={item + seatNumber}
+                            src={greySeat}
+                            alt="confirmed seat"
+                          ></img>
+                        ) : selectedSeats.includes(item + seatNumber) ? (
+                          <img
+                            onClick={() => {
+                              handleSeatClick(item + seatNumber);
+                            }}
+                            src={blueSeat}
+                            alt="selected seat"
+                          ></img>
                         ) : (
                           <img
-                            key={item.row + seatNumber}
+                            onClick={() => {
+                              handleSeatClick(item + seatNumber);
+                            }}
                             src={whiteSeat}
+                            alt="seat"
                           ></img>
                         )}
-                      </SittingSeatStyle>
-                    </>
-                  );
-                })}
-              </RowSeatStyle>
-            );
-          })}
-        </AllSeatsStyle>
-
-        <button onClick={confirmBooking}>Confirm Booking</button>
+                      </>
+                    );
+                  })}
+                </RowSeatStyle>
+              );
+            })}
+          </AllSeatsStyle>
+          <ConfirmBookingButtonStyle onClick={confirmBooking}>
+            Confirm Booking
+          </ConfirmBookingButtonStyle>
+        </BookingPageFlex>
       </BookingPageStyle>
       {modalVisible ? (
         <ConfirmBooking
           closeModal={closeModal}
           selectedSeats={selectedSeats}
           confirmedSeats={confirmedSeats}
-        >{props.children}</ConfirmBooking>
+        >
+          {props.children}
+        </ConfirmBooking>
       ) : null}
     </>
   );
