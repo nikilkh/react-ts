@@ -1,18 +1,17 @@
 import { useContext } from "react";
-import { MoviesContainerStyle, MovieStyle } from "./Movies/Landpage/LandPage.styled";
-import { context, movieData } from "./context";
+import { context, movieData } from "../../../context";
+import { MoviesContainerStyle, MovieStyle } from "../LandPage.styled";
 import MovieCard from "./MovieCard";
 const IMG_URL = "https://image.tmdb.org/t/p/w500";
 
-
 export default function MoviesContainer() {
-  const a = useContext(context);
- 
+  const states = useContext(context);
+
   return (
     <MoviesContainerStyle>
-      {a?.showMovies ? (
+      {states?.showMovies ? (
         <>
-          {a?.movies?.map((movie: movieData) => {
+          {states?.movies?.map((movie: movieData) => {
             return (
               <>
                 <MovieStyle bg={IMG_URL + movie.poster_path}>

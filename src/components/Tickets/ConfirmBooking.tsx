@@ -1,5 +1,5 @@
 import { useLocation } from "react-router-dom";
-import { ConfirmModalStyle, ModalCloseStyle, ModalImageStyle, PriceDetailsStyle } from "../BookingPage.style";
+import { ConfirmModalStyle, ModalCloseStyle, ModalImageStyle, PriceDetailsStyle } from "./BookingPage.style";
 
 type movie = {
   id: number

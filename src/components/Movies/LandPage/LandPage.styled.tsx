@@ -1,11 +1,8 @@
 import styled from "styled-components";
 type props = {
-    bg: string
-}
-
+  bg: string;
+};
 export const LandPageStyle = styled.div`
-/* @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&family=Rubik:wght@500;600&display=swap'); */
-
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -14,24 +11,57 @@ export const LandPageStyle = styled.div`
 
 export const HeaderStyle = styled.header`
   h1 {
-    font-family: "Roboto Mono", monospace;
+    font-family: "Roboto Mono";
     font-size: 48px;
     font-weight: 500;
   }
 `;
-export const SearchBoxStyle = styled.div``;
+export const SearchBoxStyle = styled.div`
+  position: relative;
+  input {
+    width: 300px;
+    height: 43px;
+    text-align: left;
+    padding-left: 16px;
+
+    &:focus::placeholder {
+      color: white;
+    }
+  }
+`;
+
+export const SearchIconButtonStyle = styled.button`
+  all: unset;
+  height: 50px;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  padding-left: 16px;
+  padding-right: 16px;
+  cursor: pointer;
+`;
+
 export const MoviesContainerStyle = styled.div`
   display: flex;
   flex-wrap: wrap;
   margin-top: 60px;
   margin-bottom: 60px;
-  width: 90%;
+  width: 1440px;
   height: max-content;
   row-gap: 48px;
   column-gap: 75px;
   justify-content: center;
   align-items: center;
-  border: 4px solid black;
+
+  @media only screen and (max-width: 600px) {
+    width: auto;
+  }
+  @media only screen and (max-width: 768px) {
+    width: auto;
+  }
+  @media only screen and (max-width: 1024px) {
+    width: auto;
+  }
 `;
 
 export const MovieStyle = styled.div`
@@ -45,7 +75,7 @@ export const MovieStyle = styled.div`
   justify-content: center;
   align-items: center;
   row-gap: 53.52px;
-  box-shadow: 10px 10px 20px #888888;
+  box-shadow: 0px 10px 20px 5px rgba(0, 0, 0, 0.25);
   z-index: 0;
   background-image: url(${(props: props) => props.bg});
   background-size: cover;
@@ -59,7 +89,7 @@ export const MovieStyle = styled.div`
     top: 0px;
     left: 0px;
     background-color: #62626299;
-    opacity: 0.6;
+    opacity: 0.8;
     z-index: 1;
   }
 
@@ -83,30 +113,6 @@ export const MovieStyle = styled.div`
     }
   }
 
-  button {
-    display: none;
-    background-color: #352c9a;
-    font-family: "Rubik", sans-serif;
-    font-size: 16px;
-    font-weight: 600;
-    color: white;
-    padding: 12px 34px;
-    cursor: pointer;
-
-    &:active {
-      text-decoration: underline;
-    }
-
-    &:disabled {
-      background: #626262;
-    }
-
-    &:hover {
-      background: #724fd8;
-      transform: scale(0.95);
-    }
-  }
-
   &:hover h3 {
     display: block;
     z-index: 2;
@@ -115,5 +121,29 @@ export const MovieStyle = styled.div`
   &:hover button {
     display: block;
     z-index: 2;
+  }
+`;
+
+export const BookNowButtonStyle = styled.button`
+  all: unset;
+  display: none;
+  background-color: #352c9a;
+  font-family: "Rubik", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+  padding: 12px 34px;
+  cursor: pointer;
+
+  &:active {
+    text-decoration: underline;
+  }
+
+  &:disabled {
+    background: #626262;
+  }
+
+  &:hover {
+    background: #724fd8;
   }
 `;

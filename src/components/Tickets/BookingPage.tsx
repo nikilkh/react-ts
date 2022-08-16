@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
-import { useLocation, useParams } from "react-router-dom";
-import screen from "./screen.svg";
-import whiteSeat from "./whiteSeat.svg";
-import greySeat from "./greySeat.svg";
-import blueSeat from "./blueSeat.svg";
+import { useLocation } from "react-router-dom";
+import screen from "../SVGs/screen.svg";
+import whiteSeat from "../SVGs/whiteSeat.svg";
+import greySeat from "../SVGs/greySeat.svg";
+import blueSeat from "../SVGs/blueSeat.svg";
+
+import ConfirmBooking from "./ConfirmBooking";
 import {
   AllSeatsStyle,
   BookingPageStyle,
@@ -12,8 +14,7 @@ import {
   SeatNumberStyle,
   SeatStyle,
   SittingSeatStyle,
-} from "../BookingPage.style";
-import ConfirmBooking from "./ConfirmBooking";
+} from "./BookingPage.style";
 type movie = {
   id: number;
 };
@@ -21,8 +22,11 @@ interface stateType {
   movie: movie;
 }
 
-export default function BookingPage() {
-  const IMG_URL = "https://image.tmdb.org/t/p/w500";
+type BookingProps = {
+  children: React.ReactNode
+}
+
+export default function BookingPage(props: BookingProps) {
 
   const [selectedSeats, setSelectedSeats] = useState<string[]>([]);
   let [confirmedSeats, setConfirmedSeats] = useState<
@@ -30,7 +34,6 @@ export default function BookingPage() {
   >([]);
   const [modalVisible, setModalVisible] = useState<boolean>(false);
   const [bookingHomeVisible, setBookingHomeVisible] = useState<boolean>(true);
-  let seatsForPriceCalc = [];
   const data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   const seats = [
@@ -53,7 +56,7 @@ export default function BookingPage() {
   ];
   let location = useLocation();
   const state = location.state as stateType;
-  // console.log(location.state.movie.id, location.state.movie.poster_path);
+  
   function handleSeatClick(id: string) {
     if (selectedSeats?.includes(id)) {
       let newSelectedSeats = selectedSeats.filter((seat: string) => {
@@ -82,16 +85,13 @@ export default function BookingPage() {
 
   useEffect(() => {
     if (localStorage.getItem(state.movie.id.toString()) !== null || undefined) {
-      // setSelectedSeats(
-      //   localStorage.getItem(state.movie.id.toString()).split(",")
-      // );
+      
       setConfirmedSeats(
         localStorage.getItem(state.movie.id.toString())?.split(",")
       );
     }
   }, []);
 
-  // console.log(location.state.movie.id);
   return (
     <>
       `
@@ -159,7 +159,7 @@ export default function BookingPage() {
           closeModal={closeModal}
           selectedSeats={selectedSeats}
           confirmedSeats={confirmedSeats}
-        ></ConfirmBooking>
+        >{props.children}</ConfirmBooking>
       ) : null}
     </>
   );
