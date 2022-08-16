@@ -1,7 +1,7 @@
 
   import { useContext, useEffect } from "react";
-  import { context, obj } from "./context";
-  import MoviesContainer from "./MoviesContainer";
+  import { context, obj } from "../../context";
+  import MoviesContainer from "../../MoviesContainer";
   import { useNavigate } from "react-router-dom";
 import { HeaderStyle, LandPageStyle, SearchBoxStyle } from "../styles/LandPage.styled";
 import NoResult from "./NoResult";

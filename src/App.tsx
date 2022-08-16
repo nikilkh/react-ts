@@ -1,5 +1,5 @@
 import StateContextProvider from "./components/context";
-import { LandPage } from "./components/LandPage";
+import { LandPage } from "./components/Movies/Landpage/LandPage";
 
 
 

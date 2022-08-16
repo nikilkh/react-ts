@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { MoviesContainerStyle, MovieStyle } from "../styles/LandPage.styled";
+import { MoviesContainerStyle, MovieStyle } from "./Movies/Landpage/LandPage.styled";
 import { context, movieData } from "./context";
 import MovieCard from "./MovieCard";
 const IMG_URL = "https://image.tmdb.org/t/p/w500";

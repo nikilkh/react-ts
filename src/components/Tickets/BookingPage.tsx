@@ -4,22 +4,30 @@ import screen from "./screen.svg";
 import whiteSeat from "./whiteSeat.svg";
 import greySeat from "./greySeat.svg";
 import blueSeat from "./blueSeat.svg";
+import {
+  AllSeatsStyle,
+  BookingPageStyle,
+  RowSeatStyle,
+  ScreenStyle,
+  SeatNumberStyle,
+  SeatStyle,
+  SittingSeatStyle,
+} from "../BookingPage.style";
 import ConfirmBooking from "./ConfirmBooking";
-import { AllSeatsStyle, BookingPageStyle, RowSeatStyle, ScreenStyle, SeatNumberStyle, SeatStyle, SittingSeatStyle } from "../styles/BookingPage.style";
 type movie = {
-  id: number
-}
+  id: number;
+};
 interface stateType {
-  movie: movie
+  movie: movie;
 }
-
-
 
 export default function BookingPage() {
   const IMG_URL = "https://image.tmdb.org/t/p/w500";
 
-  const [selectedSeats, setSelectedSeats] = useState<string[] >([]);
-  let [confirmedSeats, setConfirmedSeats] = useState<string[] | undefined | null >([]);
+  const [selectedSeats, setSelectedSeats] = useState<string[]>([]);
+  let [confirmedSeats, setConfirmedSeats] = useState<
+    string[] | undefined | null
+  >([]);
   const [modalVisible, setModalVisible] = useState<boolean>(false);
   const [bookingHomeVisible, setBookingHomeVisible] = useState<boolean>(true);
   let seatsForPriceCalc = [];
@@ -43,8 +51,8 @@ export default function BookingPage() {
       seat: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
     },
   ];
-  let location= useLocation();
-const state = location.state as stateType;
+  let location = useLocation();
+  const state = location.state as stateType;
   // console.log(location.state.movie.id, location.state.movie.poster_path);
   function handleSeatClick(id: string) {
     if (selectedSeats?.includes(id)) {
@@ -58,11 +66,11 @@ const state = location.state as stateType;
   }
 
   function confirmBooking() {
-    localStorage.setItem(state.movie.id.toString() , (selectedSeats.toString()));
-    
+    localStorage.setItem(state.movie.id.toString(), selectedSeats.toString());
+
     setConfirmedSeats(
       localStorage.getItem(state.movie.id.toString())?.split(",")
-      );
+    );
     setModalVisible(true);
     setBookingHomeVisible(false);
   }
@@ -80,14 +88,14 @@ const state = location.state as stateType;
       setConfirmedSeats(
         localStorage.getItem(state.movie.id.toString())?.split(",")
       );
-      
     }
   }, []);
 
   // console.log(location.state.movie.id);
   return (
     <>
-    `<BookingPageStyle
+      `
+      <BookingPageStyle
         style={
           bookingHomeVisible
             ? { background: "white" }
@@ -146,13 +154,12 @@ const state = location.state as stateType;
 
         <button onClick={confirmBooking}>Confirm Booking</button>
       </BookingPageStyle>
-
       {modalVisible ? (
-        <ConfirmBooking closeModal={closeModal} selectedSeats={selectedSeats} confirmedSeats={confirmedSeats}>
-
-        </ConfirmBooking>
-
-        
+        <ConfirmBooking
+          closeModal={closeModal}
+          selectedSeats={selectedSeats}
+          confirmedSeats={confirmedSeats}
+        ></ConfirmBooking>
       ) : null}
     </>
   );
