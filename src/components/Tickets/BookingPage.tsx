@@ -1,9 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import screen from "../SVGs/screen.svg";
-import whiteSeat from "../SVGs/whiteSeat.svg";
-import greySeat from "../SVGs/greySeat.svg";
-import blueSeat from "../SVGs/blueSeat.svg";
 
 import { ConfirmBooking } from "./ConfirmBooking";
 import {
@@ -18,6 +15,8 @@ import {
 } from "./BookingPage.style";
 import { GlobalStyle } from "../../styles/Global.styled";
 import { Button } from "../Button/Button";
+import { Seat } from "../SVGs/Seat";
+
 type movie = {
   id: number;
 };
@@ -113,29 +112,30 @@ export default function BookingPage(props: BookingProps) {
                   {seats.data.map((seatNumber) => {
                     return (
                       <>
-                        {confirmedSeats?.includes(item + seatNumber) ? (
-                          <img
-                            key={item + seatNumber}
-                            src={greySeat}
-                            alt="confirmed seat"
-                          ></img>
-                        ) : selectedSeats.includes(item + seatNumber) ? (
-                          <img
-                            onClick={() => {
-                              handleSeatClick(item + seatNumber);
-                            }}
-                            src={blueSeat}
-                            alt="selected seat"
-                          ></img>
-                        ) : (
-                          <img
-                            onClick={() => {
-                              handleSeatClick(item + seatNumber);
-                            }}
-                            src={whiteSeat}
-                            alt="seat"
-                          ></img>
-                        )}
+                        {(() => {
+                          switch (true) {
+                            case confirmedSeats.includes(item + seatNumber):
+                              return <Seat colorN="#626262" />;
+                            case selectedSeats.includes(item + seatNumber):
+                              return (
+                                <Seat
+                                  colorN="#724FD8"
+                                  onClick={() => {
+                                    handleSeatClick(item + seatNumber);
+                                  }}
+                                />
+                              );
+                            default:
+                              return (
+                                <Seat
+                                  colorN="#DADADA"
+                                  onClick={() => {
+                                    handleSeatClick(item + seatNumber);
+                                  }}
+                                />
+                              );
+                          }
+                        })()}
                       </>
                     );
                   })}
