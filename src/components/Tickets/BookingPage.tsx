@@ -92,7 +92,7 @@ export default function BookingPage(props: BookingProps) {
             <img src={screen} alt="screen this side"></img>
           </ScreenStyle>
 
-          <div style={{ margin: "auto" }}>
+          
             <SeatNumberStyle>
               {data.map((num) => {
                 return (
@@ -102,7 +102,6 @@ export default function BookingPage(props: BookingProps) {
                 );
               })}
             </SeatNumberStyle>
-          </div>
 
           <AllSeatsStyle>
             {seats.row.map((item) => {
