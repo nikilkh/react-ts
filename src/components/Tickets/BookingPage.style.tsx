@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import { ButtonStyle } from "../Button/Button.styled";
+
 type props = {
   bookingHomeVisible: boolean;
 };
@@ -17,6 +19,10 @@ export const BookingPageFlex = styled.div`
   width: 1440px;
   height: 1024px;
   flex-direction: column;
+
+  ${ButtonStyle} {
+    margin: auto;
+  }
 `;
 
 export const ScreenStyle = styled.div`
@@ -135,32 +141,6 @@ export const PriceDetailsStyle = styled.div`
   div:nth-child(6) {
     display: flex;
     justify-content: space-between;
-  }
-`;
-
-export const ConfirmBookingButtonStyle = styled.button`
-  margin: auto;
-  margin-top: 109px;
-  width: 190px;
-  height: 43px;
-  background-color: #352c9a;
-  font-family: "Rubik", sans-serif;
-  font-size: 16px;
-  font-weight: 600;
-  color: white;
-  cursor: pointer;
-
-  &:active {
-    text-decoration: underline;
-  }
-
-  &:disabled {
-    background: #626262;
-  }
-
-  &:hover {
-    background: #724fd8;
-    transform: scale(0.95);
   }
 `;
 

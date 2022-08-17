@@ -1,6 +1,7 @@
+import React from "react";
 import { useNavigate } from "react-router-dom";
+import { Button } from "../../../Button/Button";
 import { movieData } from "../../../context";
-import { BookNowButtonStyle } from "../LandPage.styled";
 
 type props = {
   movie: movieData;
@@ -15,7 +16,7 @@ export default function MovieCard(props: props) {
   return (
     <>
       <h3>{props.movie.title}</h3>
-      <BookNowButtonStyle onClick={handleBookNow}>Book Now</BookNowButtonStyle>
+      <Button onclick={handleBookNow}>Book Now</Button>
     </>
   );
 }

@@ -10,7 +10,6 @@ import {
   AllSeatsStyle,
   BookingPageFlex,
   BookingPageStyle,
-  ConfirmBookingButtonStyle,
   LetterSeatStyle,
   RowSeatStyle,
   ScreenStyle,
@@ -18,6 +17,7 @@ import {
   SeatStyle,
 } from "./BookingPage.style";
 import { GlobalStyle } from "../../styles/Global.styled";
+import { Button } from "../Button/Button";
 type movie = {
   id: number;
 };
@@ -92,16 +92,15 @@ export default function BookingPage(props: BookingProps) {
             <img src={screen} alt="screen this side"></img>
           </ScreenStyle>
 
-          
-            <SeatNumberStyle>
-              {data.map((num) => {
-                return (
-                  <SeatStyle>
-                    <h1>{num}</h1>
-                  </SeatStyle>
-                );
-              })}
-            </SeatNumberStyle>
+          <SeatNumberStyle>
+            {data.map((num) => {
+              return (
+                <SeatStyle>
+                  <h1>{num}</h1>
+                </SeatStyle>
+              );
+            })}
+          </SeatNumberStyle>
 
           <AllSeatsStyle>
             {seats.row.map((item) => {
@@ -144,9 +143,8 @@ export default function BookingPage(props: BookingProps) {
               );
             })}
           </AllSeatsStyle>
-          <ConfirmBookingButtonStyle onClick={confirmBooking}>
-            Confirm Booking
-          </ConfirmBookingButtonStyle>
+
+          <Button onclick={confirmBooking}>Confirm Booking</Button>
         </BookingPageFlex>
       </BookingPageStyle>
       {modalVisible ? (
