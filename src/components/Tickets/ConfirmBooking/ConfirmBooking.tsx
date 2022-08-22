@@ -8,24 +8,8 @@ import {
   ModalHeadingStyle,
   ModalImageStyle,
   PriceDetailsStyle,
-} from "./BookingPage.style";
-
-type movie = {
-  id: number;
-  poster_path: string;
-  title: string;
-};
-interface stateType {
-  movie: movie;
-}
-
-type props = {
-  children: React.ReactNode;
-
-  closeModal: React.MouseEventHandler<HTMLButtonElement>;
-  selectedSeats: string[];
-  confirmedSeats?: string[] | null;
-};
+} from "../BookingPageStyle/BookingPage.style";
+import { props, stateType } from "./ConfirmBooking.types";
 
 export const ConfirmBooking = (props: props) => {
   const IMG_URL = "https://image.tmdb.org/t/p/w500";

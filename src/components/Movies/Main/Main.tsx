@@ -1,5 +1,5 @@
-import StateContextProvider from "../context";
-import { LandPage } from "./LandPage/LandPage";
+import StateContextProvider from "../../Context/context";
+import { LandPage } from "../LandPage";
 
 export const Main = () => {
   return (

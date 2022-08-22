@@ -1,12 +1,9 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { Button } from "../../../Button/Button";
-import { movieData } from "../../../context";
+import { Button } from "../../Button";
+import { props } from "./";
 
-type props = {
-  movie: movieData;
-};
-export default function MovieCard(props: props) {
+export const MovieCard = (props: props) => {
   let navigate = useNavigate();
 
   function handleBookNow() {

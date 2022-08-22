@@ -1,7 +1,7 @@
 import { useContext, useEffect } from "react";
-import { context } from "../../context";
-import MoviesContainer from "./MovieContainer/MoviesContainer";
-import NoResult from "./NoResult/NoResult";
+import { context } from "../../Context/context";
+import { MoviesContainer } from "../MovieContainer/MoviesContainer";
+import { NoResult } from "../NoResult/index";
 import {
   HeaderStyle,
   LandPageStyle,
@@ -13,7 +13,7 @@ import searchIcon from "../../SVGs/searchIcon.svg";
 export const LandPage = () => {
   const states = useContext(context);
   const API_KEY = process.env.REACT_APP_API_KEY;
-  const API_URL = process.env.REACT_APP_API_URL;
+  const API_URL = process.env.REACT_APP_API_URL as string;
   const BASE_URL = "https://api.themoviedb.org/3";
   const SEARCH_URL = BASE_URL + "/search/movie?" + API_KEY + "&query=";
 

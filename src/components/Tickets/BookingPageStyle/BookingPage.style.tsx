@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { ButtonStyle } from "../Button/Button.styled";
+import { ButtonStyle } from "../../Button/Button.styled";
 
 type props = {
   bookingHomeVisible: boolean;

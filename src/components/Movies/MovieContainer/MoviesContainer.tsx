@@ -1,10 +1,10 @@
 import { useContext } from "react";
-import { context, movieData } from "../../../context";
-import { MoviesContainerStyle, MovieStyle } from "../LandPage.styled";
-import MovieCard from "./MovieCard";
+import { context, movieData } from "../../Context/context";
+import { MoviesContainerStyle, MovieStyle } from "../LandPage/LandPage.styled";
+import { MovieCard } from "../MovieCard/index";
 const IMG_URL = "https://image.tmdb.org/t/p/w500";
 
-export default function MoviesContainer() {
+export const MoviesContainer = () => {
   const states = useContext(context);
 
   return (

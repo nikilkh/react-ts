@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import screen from "../SVGs/screen.svg";
+import { Screen } from "../../SVGs/Screen";
 
-import { ConfirmBooking } from "./ConfirmBooking";
+import { ConfirmBooking } from "../ConfirmBooking";
 import {
   AllSeatsStyle,
   BookingPageFlex,
@@ -12,23 +12,14 @@ import {
   ScreenStyle,
   SeatNumberStyle,
   SeatStyle,
-} from "./BookingPage.style";
-import { GlobalStyle } from "../../styles/Global.styled";
-import { Button } from "../Button/Button";
-import { Seat } from "../SVGs/Seat";
+} from "../BookingPageStyle/index";
+import { GlobalStyle } from "../../../styles/Global.styled";
+import { Button } from "../../Button/Button";
+import { Seat } from "../../SVGs/Seat";
+import { BookingProps, stateType } from "./BookingPage.types";
 
-type movie = {
-  id: number;
-};
-interface stateType {
-  movie: movie;
-}
 
-type BookingProps = {
-  children: React.ReactNode;
-};
-
-export default function BookingPage(props: BookingProps) {
+export const BookingPage = (props: BookingProps) => {
   const [selectedSeats, setSelectedSeats] = useState<string[]>([]);
   const [confirmedSeats, setConfirmedSeats] = useState<string[]>([]);
   const [modalVisible, setModalVisible] = useState<boolean>(false);
@@ -88,7 +79,8 @@ export default function BookingPage(props: BookingProps) {
       <BookingPageStyle bookingHomeVisible={bookingHomeVisible}>
         <BookingPageFlex>
           <ScreenStyle>
-            <img src={screen} alt="screen this side"></img>
+            <Screen/>
+            {/* <img src={screen} alt="screen this side"></img> */}
           </ScreenStyle>
 
           <SeatNumberStyle>
@@ -158,4 +150,4 @@ export default function BookingPage(props: BookingProps) {
       ) : null}
     </>
   );
-}
+};

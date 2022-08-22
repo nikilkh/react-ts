@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { createContext } from "react";
-
-type contextType = {
+export type contextType = {
   movies: movieData[] | null;
   setMovies: React.Dispatch<React.SetStateAction<movieData[] | null>>;
   input: string;
@@ -13,6 +12,8 @@ type contextType = {
   showBooking: boolean;
   setShowBooking: React.Dispatch<React.SetStateAction<boolean>>;
 };
+
+
 
 export type contextProviderProps = {
   children: React.ReactNode;
@@ -53,3 +54,5 @@ export default function StateContextProvider({
     </context.Provider>
   );
 }
+
+export const useAppContext = () => useContext<contextType | null>(context);

@@ -1,10 +1,11 @@
 import { Route, Routes } from "react-router-dom";
-import BookingPage from "../Tickets/BookingPage";
-import { Main } from "./Main";
+import { BookingPage } from "./components/Tickets/BookingPage";
+import { Main } from "./components/Movies/Main";
 
 export const App = () => {
   return (
-    <Routes>
+    <div>
+<Routes>
       <Route path="/" element={<Main />} />
 
       <Route
@@ -12,5 +13,7 @@ export const App = () => {
         element={<BookingPage children={undefined} />}
       ></Route>
     </Routes>
+    </div>
+    
   );
 };
