@@ -18,7 +18,6 @@ import { Button } from "../../Button/Button";
 import { Seat } from "../../SVGs/Seat";
 import { BookingProps, stateType } from "./BookingPage.types";
 
-
 export const BookingPage = (props: BookingProps) => {
   const [selectedSeats, setSelectedSeats] = useState<string[]>([]);
   const [confirmedSeats, setConfirmedSeats] = useState<string[]>([]);
@@ -30,7 +29,7 @@ export const BookingPage = (props: BookingProps) => {
     data: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
   };
 
-  let location = useLocation();
+  const location = useLocation();
   const state = location.state as stateType;
 
   function handleSeatClick(id: string) {
@@ -78,7 +77,7 @@ export const BookingPage = (props: BookingProps) => {
       <BookingPageStyle bookingHomeVisible={bookingHomeVisible}>
         <BookingPageFlex>
           <ScreenStyle>
-            <Screen/>
+            <Screen />
             {/* <img src={screen} alt="screen this side"></img> */}
           </ScreenStyle>
 
