@@ -78,11 +78,10 @@ export const BookingPage = (props: BookingProps) => {
         <BookingPageFlex>
           <ScreenStyle>
             <Screen />
-            {/* <img src={screen} alt="screen this side"></img> */}
           </ScreenStyle>
 
           <SeatNumberStyle>
-            {data.map((num) => {
+            {seats.data.map((num) => {
               return (
                 <SeatStyle>
                   <h1>{num}</h1>
