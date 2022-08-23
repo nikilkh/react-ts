@@ -62,7 +62,7 @@ export const LandPage = () => {
             states?.setInput(e.target.value);
           }}
         ></input>
-        <SearchIconButtonStyle
+        <SearchIconButtonStyle data-testid="searchButton"
           onClick={(e) => {
             handleSearchClick(e);
           }}

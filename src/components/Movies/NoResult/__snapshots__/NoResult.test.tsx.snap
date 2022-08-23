@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders learn react link should render hello world 1`] = `
+<div>
+  <div
+    class="sc-bczRLJ hfsExZ"
+  >
+    <h2
+      class="sc-gsnTZi gBnMnc"
+    >
+      Sorry,there is no result for keyword you searched
+    </h2>
+    <img
+      alt="Sorry No Results"
+      src="noResult.svg"
+    />
+  </div>
+</div>
+`;

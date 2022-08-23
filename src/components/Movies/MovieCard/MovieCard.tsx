@@ -1,9 +1,9 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../../Button";
-import { props } from "./";
+import { movieCardProps } from "./MovieCard.types";
 
-export const MovieCard = (props: props) => {
+export const MovieCard = (props: movieCardProps) => {
   const navigate = useNavigate();
 
   function handleBookNow() {

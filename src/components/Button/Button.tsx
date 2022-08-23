@@ -1,7 +1,6 @@
-import React from "react";
 import { ButtonStyle } from "./Button.styled";
-import { props } from "./Button.types";
+import { buttonProps } from "./Button.types";
 
-export const Button = (props: props) => {
+export const Button = (props: buttonProps) => {
   return <ButtonStyle onClick={props.onclick}>{props.children}</ButtonStyle>;
 };

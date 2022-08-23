@@ -12,7 +12,7 @@ import {
   ScreenStyle,
   SeatNumberStyle,
   SeatStyle,
-} from "../BookingPageStyle/index";
+} from "../BookingPageStyle";
 import { GlobalStyle } from "../../../styles/Global.styled";
 import { Button } from "../../Button/Button";
 import { Seat } from "../../SVGs/Seat";
@@ -81,21 +81,21 @@ export const BookingPage = (props: BookingProps) => {
           </ScreenStyle>
 
           <SeatNumberStyle>
-            {seats.data.map((num) => {
+            {seats.data.map((num, index) => {
               return (
-                <SeatStyle>
-                  <h1>{num}</h1>
+                <SeatStyle >
+                  <h1 key={index}>{num}</h1>
                 </SeatStyle>
               );
             })}
           </SeatNumberStyle>
 
           <AllSeatsStyle>
-            {seats.row.map((item) => {
+            {seats.row.map((item, index) => {
               return (
-                <RowSeatStyle>
+                <RowSeatStyle >
                   <LetterSeatStyle>
-                    <h1>{item}</h1>
+                    <h1 key={index}>{item}</h1>
                   </LetterSeatStyle>
 
                   {seats.data.map((seatNumber) => {
@@ -104,7 +104,7 @@ export const BookingPage = (props: BookingProps) => {
                         {(() => {
                           switch (true) {
                             case confirmedSeats.includes(item + seatNumber):
-                              return <Seat colorN="#626262" />;
+                              return <Seat colorN="#626262" key={index} />;
                             case selectedSeats.includes(item + seatNumber):
                               return (
                                 <Seat
@@ -112,6 +112,7 @@ export const BookingPage = (props: BookingProps) => {
                                   onClick={() => {
                                     handleSeatClick(item + seatNumber);
                                   }}
+                                  key={index}
                                 />
                               );
                             default:
@@ -121,6 +122,7 @@ export const BookingPage = (props: BookingProps) => {
                                   onClick={() => {
                                     handleSeatClick(item + seatNumber);
                                   }}
+                                  key={index}
                                 />
                               );
                           }

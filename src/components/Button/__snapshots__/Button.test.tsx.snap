@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders learn react link should render hello world 1`] = `
+<div>
+  <button
+    class="sc-bczRLJ cgVelk"
+  >
+    click me
+  </button>
+</div>
+`;

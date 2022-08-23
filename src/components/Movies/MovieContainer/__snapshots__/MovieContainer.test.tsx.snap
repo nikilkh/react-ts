@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders learn react link should render hello world 1`] = `
+<div>
+  <div
+    class="sc-jSMfEi iAkGmp"
+  >
+    <h3>
+      loading...
+    </h3>
+  </div>
+</div>
+`;

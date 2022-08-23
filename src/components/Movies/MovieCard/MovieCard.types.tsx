@@ -1,5 +1,5 @@
 import { movieData } from "../../Context/context";
 
-export type props = {
+export type movieCardProps = {
     movie: movieData;
   };
