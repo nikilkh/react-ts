@@ -13,7 +13,7 @@ import { props, stateType } from "./ConfirmBooking.types";
 
 export const ConfirmBooking = (props: props) => {
   const IMG_URL = "https://image.tmdb.org/t/p/w500";
-  let location = useLocation();
+  const location = useLocation();
   const state = location.state as stateType;
 
   return (
