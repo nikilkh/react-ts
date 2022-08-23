@@ -13,16 +13,15 @@ import searchIcon from "../../SVGs/searchIcon.svg";
 export const LandPage = () => {
   const states = useContext(context);
   const API_KEY = process.env.REACT_APP_API_KEY;
-  const API_URL = process.env.REACT_APP_API_URL as string;
   const BASE_URL = "https://api.themoviedb.org/3";
   const SEARCH_URL = BASE_URL + "/search/movie?" + API_KEY + "&query=";
 
-  async function getMovie(url: string) {
+  async function getMovie(url: string | undefined) {
     states?.setNoResult(false);
     states?.setShowMovies(false);
 
     try {
-      const res = await fetch(url);
+      const res = await fetch(url as string) ;
       const data = await res.json();
       const result = data.results;
       if (result.length === 0) {
@@ -41,14 +40,14 @@ export const LandPage = () => {
   ) {
     e.preventDefault();
     if (states?.input?.length === 0) {
-      getMovie(API_URL);
+      getMovie(process.env.REACT_APP_API_URL);
     } else {
       getMovie(SEARCH_URL + states?.input);
     }
   }
 
   useEffect(() => {
-    getMovie(API_URL);
+    getMovie(process.env.REACT_APP_API_URL);
   }, []);
   return (
     <LandPageStyle>
