@@ -4,7 +4,7 @@ import { Button } from "../../Button";
 import { props } from "./";
 
 export const MovieCard = (props: props) => {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
   function handleBookNow() {
     navigate(`/book/${props.movie.id}/${props.movie.title}`, { state: props });
@@ -16,4 +16,4 @@ export const MovieCard = (props: props) => {
       <Button onclick={handleBookNow}>Book Now</Button>
     </>
   );
-}
+};
