@@ -4,7 +4,7 @@ import { LandPage } from "./LandPage";
 
 afterEach(cleanup);
 describe("<LandPage/>", () => {
-  test("should take snapshot", () => {
+  it("should take snapshot", () => {
     const { container } = render(<LandPage />);
     expect(container).toMatchSnapshot();
   });
