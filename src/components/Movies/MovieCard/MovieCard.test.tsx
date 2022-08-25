@@ -1,12 +1,19 @@
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
-import { MovieCard } from "./MovieCard"
+import { MovieCard } from "./MovieCard";
+
 const movie = {
-  id: 0,
-  title: "",
-  poster_path: "",
+  id: 766507,
+  title: "Prey",
+  poster_path: "/ujr5pztc1oitbe7ViMUOilFaJ7s.jpg",
 };
-const handleBookNow = jest.fn();
+
+const mockUseNavigate = jest.fn();
+
+jest.mock('react-router-dom' , () => ({
+    ...jest.requireActual("react-router-dom") as any,
+    useNavigate: () => mockUseNavigate,
+}));
 
 describe("<MovieCard/>", () => {
   it("should take snapshot", () => {
@@ -19,7 +26,20 @@ describe("<MovieCard/>", () => {
     expect(container).toMatchSnapshot();
   });
 
-  test("book now button", ()=> {
-    const button = screen.getby
+  test("for movie title", () => {
+    render(<BrowserRouter><MovieCard movie={movie}></MovieCard></BrowserRouter>)
+    const movieTitle = screen.getByText(/Prey/i);
+    expect(movieTitle).toBeInTheDocument;
+  });
+
+  it("NavLink should have id and path attribute", () => {
+
+    render(<BrowserRouter><MovieCard movie={movie} /></BrowserRouter>);
+    // const Nav = screen.getByRole<HTMLAnchorElement>("link");
+    // expect(Nav).toHaveAttribute("href", "/book/766507/Prey");
+    const bookNowButton = screen.getByRole("button");
+    fireEvent.click(bookNowButton)
+    expect(mockUseNavigate).toHaveBeenCalledWith("/book/766507/Prey", {state: {movie}});
   })
+  
 });

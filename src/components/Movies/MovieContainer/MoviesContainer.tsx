@@ -13,11 +13,11 @@ export const MoviesContainer = () => {
         <>
           {states?.movies?.map((movie: movieData) => {
             return (
-              <>
-                <MovieStyle bg={IMG_URL + movie.poster_path}>
+              
+                <MovieStyle key={movie.id} bg={IMG_URL + movie.poster_path}>
                   <MovieCard movie={movie}></MovieCard>
                 </MovieStyle>
-              </>
+            
             );
           })}
         </>

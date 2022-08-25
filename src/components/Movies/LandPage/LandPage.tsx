@@ -31,7 +31,7 @@ export const LandPage = () => {
         states?.setShowMovies(true);
       }
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   }
 

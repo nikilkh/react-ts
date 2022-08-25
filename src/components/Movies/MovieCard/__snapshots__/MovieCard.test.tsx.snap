@@ -2,7 +2,9 @@
 
 exports[`<MovieCard/> should take snapshot 1`] = `
 <div>
-  <h3 />
+  <h3>
+    Prey
+  </h3>
   <button
     class="sc-bczRLJ cgVelk"
   >
